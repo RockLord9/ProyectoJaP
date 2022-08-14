@@ -190,7 +190,7 @@ a.custom-card:hover {
 }
 
 form{
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
 }
