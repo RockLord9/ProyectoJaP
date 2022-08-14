@@ -1,4 +1,8 @@
-let user = document.getElementById('user');
+let user = document.getElementById('email');
+let button = document.getElementById('button');
+let password = document.getElementById('pass');
+
+
     user.addEventListener('keypress', function(evento) {
         if (user.value.length < 5) {
             button.disabled = true;
@@ -7,7 +11,6 @@ let user = document.getElementById('user');
         }
     });
 
-    let password = document.getElementById('pass');
     password.addEventListener('keypress', function(evento) {
         if (password.value.length < 8) {
             button.disabled = true;
@@ -15,3 +18,4 @@ let user = document.getElementById('user');
             button.disabled = false;
         }
     });
+
