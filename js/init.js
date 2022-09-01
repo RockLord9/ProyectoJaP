@@ -39,3 +39,6 @@ let getJSONData = function(url){
         return result;
     });
 }
+let navBarUser = document.getElementById('nav-user');
+navBarUser.innerHTML = localStorage.getItem('login');
+
