@@ -1,4 +1,5 @@
-const URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
+let categoria = localStorage.getItem('catID');
+let URL = "https://japceibal.github.io/emercado-api/cats_products/"+categoria+".json";
 
 fetch(URL)
 .then(function(respuesta) {
