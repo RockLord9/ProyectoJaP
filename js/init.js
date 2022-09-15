@@ -42,3 +42,6 @@ let getJSONData = function(url){
 let navBarUser = document.getElementById('nav-user');
 navBarUser.innerHTML = localStorage.getItem('login');
 
+if (localStorage.getItem("login") === null){
+  window.location.href = "login.html";
+} 
