@@ -98,6 +98,7 @@ function showProductsList(){
     rowProductos.forEach(element => {
         element.addEventListener('click', (e) => {
             localStorage.setItem("idProducto", element.id);
+            window.location = "product-info.html"
         })
     });
 }
