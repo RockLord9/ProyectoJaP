@@ -44,4 +44,24 @@ navBarUser.innerHTML = localStorage.getItem('login');
 
 if (localStorage.getItem("login") === null){
   window.location.href = "login.html";
-} 
+}
+
+navBarUser.addEventListener("click", function(){
+  let htmlContentToAppend = `<ul>
+  <li><a href="cart.html">Mi Carrito</a></li>
+  <li><a href="my-profile.html">Mi Perfil</a></li>
+  <li><a href="#" id="cerrar-sesion">Cerrar Sesion</a></li>
+</ul>`
+navBarUser.innerHTML += htmlContentToAppend
+
+let cerrarSesion = document.getElementById("cerrar-sesion");
+
+cerrarSesion.addEventListener("click", function(){
+localStorage.clear();
+window.location.href = "login.html"
+})
+
+
+});
+
+

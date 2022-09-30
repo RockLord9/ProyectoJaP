@@ -194,3 +194,13 @@ form{
   justify-content: center;
   align-items: center;
 }
+
+.horizontal {
+  float: left;
+  color: orange;
+}
+
+#formulario{
+  clear:both;
+  text-align: center;
+}

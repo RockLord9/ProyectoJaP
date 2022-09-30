@@ -4,12 +4,17 @@ let URLComentarios = "https://japceibal.github.io/emercado-api/products_comments
 let URL = "https://japceibal.github.io/emercado-api/products/"+idProducto+".json";
 let producto = [];
 let comentarios = [];
+let productosRelacionados = [];
 document.addEventListener("DOMContentLoaded", function(e) {
     getJSONData(URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             producto = resultObj
+            productosRelacionados = resultObj.data.relatedProducts
+            mostrarProducto();
+            mostrarProductosRelacionados();
+            console.log(producto);
+            console.log(productosRelacionados);
             
-            mostrarProducto()   
         }
         
     });
@@ -18,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             comentarios = resultObj
             console.log(comentarios);  
         }
+        mostrarComentarios()
         
     });
    
@@ -44,12 +50,48 @@ function mostrarProducto(){
 }
 
 function mostrarComentarios(){
+    
     let contenedorComentarios = document.getElementById("comentarios");
     let htmlContentToAppend = ``;
-        htmlContentToAppend += `<h1>PEPE</h1>`
-        
-    contenedorComentarios.innerHTML = htmlContentToAppend;
-
+    let stars = ``
+    for (let comentario of comentarios.data){
+        for (let i = 0; i <  comentario.score ; i++ ){
+            stars +=`<div>
+            <span class="fa fa-star checked horizontal"></span> 
+            </div>
+            `;
+        }
+        htmlContentToAppend += `<br>
+        <div>
+            <p>Usuario: ${comentario.user}</p>
+            <p>Descripcion; ${comentario.description} </p>
+            <p>Score: ${stars}</p>          
+        </div>`;
+        stars = ``;
     }
-    
+    contenedorComentarios.innerHTML = htmlContentToAppend + stars;
+}
 
+function mostrarProductosRelacionados(){
+    let contenedorProductosRelacionados = document.getElementById("productos-relacionados")
+    contenedorProductosRelacionados.addEventListener("click", function(){
+        localStorage.setItem("idProducto", productoRelacionado.id)
+        window.location.href = "product-info.html"
+    });
+
+    let htmlContentToAppend = ``;
+    for (let productoRelacionado of productosRelacionados){
+        htmlContentToAppend += `<br>
+        <div>
+            <img src="${productoRelacionado.image}">
+            <span>${productoRelacionado.name}</span>
+        </div>`
+        contenedorProductosRelacionados.addEventListener("click", function(){
+            localStorage.setItem("idProducto", productoRelacionado.id)
+            window.location.href = "product-info.html"
+        }); 
+   }
+   contenedorProductosRelacionados.innerHTML = htmlContentToAppend;
+
+}
+//<p>Score: ${comentario.score} </p>
